@@ -7,8 +7,32 @@
    "insurance as a bridge to security".
    ========================================================= */
 
-/* Fonts are loaded via <link> in index.html <head> — deliberately not @import here,
-   which would block on this stylesheet parsing before the font request even starts. */
+/* ---------- Fonty (hostowane lokalnie) ----------
+   Zamiast Google Fonts: brak dwóch dodatkowych origin-ów (DNS + TLS) i brak
+   blokującego renderowanie arkusza z fonts.googleapis.com. Pliki są zawężone
+   do łaciny + polskich znaków i faktycznie używanych grubości — 72 KB zamiast
+   ~225 KB. Przebudowa: python subset-fonts.py (licencja: fonts/OFL.txt). */
+@font-face{
+  font-family: 'Inter';
+  src: url('fonts/inter.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  src: url('fonts/playfair.woff2') format('woff2');
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  src: url('fonts/playfair-it.woff2') format('woff2');
+  font-weight: 500 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -209,7 +233,6 @@ p{ max-width: 60ch; }
   flex-direction: column;
   background: var(--ink);
   transform: translateY(0);
-  will-change: transform;
 }
 @media (min-width: 900px){
   .intro-overlay:not(.intro-overlay--off){ display: flex; }
@@ -217,6 +240,7 @@ p{ max-width: 60ch; }
 .intro-overlay.is-rising{
   transition: transform 850ms cubic-bezier(.65,0,.35,1);
   transform: translateY(-100%);
+  will-change: transform; /* tylko na czas animacji, nie trzyma warstwy w tle */
   pointer-events: none;
 }
 .intro-overlay.is-done{ display: none; }
@@ -274,11 +298,18 @@ p{ max-width: 60ch; }
 .site-header .container{ display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-header.is-scrolled{
   padding: 12px 0;
-  background: rgba(245,247,250,.86);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(245,247,250,.94);
   border-bottom-color: var(--border);
   box-shadow: 0 8px 24px -18px rgba(14,42,71,.3);
+}
+/* Rozmycie tła to droga operacja GPU liczona przy każdej klatce przewijania.
+   Na telefonach zostaje sama półprzezroczystość — wizualnie prawie to samo. */
+@media (min-width: 900px){
+  .site-header.is-scrolled{
+    background: rgba(245,247,250,.86);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
 }
 
 .brand{ display: flex; align-items: center; gap: 12px; }
@@ -676,9 +707,7 @@ p{ max-width: 60ch; }
   gap: 2px;
   padding: 14px 18px;
   border-radius: var(--radius-m);
-  background: rgba(255,255,255,.94);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.96);
   box-shadow: var(--shadow-card);
 }
 .map-facade-label strong{ color: var(--ink); font-size: .95rem; font-weight: 600; }

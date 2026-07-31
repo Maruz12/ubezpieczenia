@@ -29,11 +29,11 @@
 <meta name="twitter:title" content="Ubezpieczenia Wrocław Szymon Wanat">
 <meta name="twitter:description" content="Agencja ubezpieczeniowa we Wrocławiu. OC/AC, życie, dom, firma. Ocena 5,0 na Google. Otwarte 7 dni w tygodniu.">
 
-<!-- Fonts loaded here (not via CSS @import) so they download in parallel with style.css
-     instead of waiting for it to parse — removes a render-blocking request chain. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap">
+<!-- Fonty hostowane lokalnie (patrz subset-fonts.py). Preload startuje pobieranie od razu,
+     bez czekania aż przeglądarka doczyta i sparsuje style.css. -->
+<link rel="preload" href="fonts/playfair.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/playfair-it.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230E2A47'/%3E%3Cpath d='M8 26c3-9 7-13 12-13s9 4 12 13' stroke='%23B8863A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cline x1='6' y1='27' x2='34' y2='27' stroke='%23F5F7FA' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
