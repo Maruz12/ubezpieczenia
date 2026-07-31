@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Crawlery wyszukiwarek AI — jawnie dopuszczone, bo to one budują
+# odpowiedzi w AI Overviews / ChatGPT / Perplexity.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://ubezpieczeniawanat.pl/sitemap.xml
